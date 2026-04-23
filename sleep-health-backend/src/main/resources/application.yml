@@ -1,0 +1,66 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: sleep-health-backend
+
+  # PostgreSQL 数据库
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sleep_health
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 30000
+
+  # Jackson 配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+
+# JWT 配置
+jwt:
+  secret: sleep-health-platform-jwt-secret-key-2026-sleephealth
+  expiration: 86400000  # 24小时
+
+# MyBatis Plus 配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.sleephealth.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+
+# MQTT 配置 (本地模拟暂不启用)
+# mqtt:
+#   broker-url: tcp://localhost:1883
+#   username: admin
+#   password: public
+#   client-id: sleep-health-backend
+#   topics:
+#     vitals: radar/+/telemetry/vitals
+#     status: radar/+/status
+
+# Ollama 配置 (本地模拟暂不启用)
+# ollama:
+#   base-url: http://localhost:11434
+#   model: llama3.2:latest
+#   timeout: 60
+
+# WebSocket 配置
+websocket:
+  expert-path: /ws/expert
+  user-path: /ws/user
+
+# 日志配置
+logging:
+  level:
+    com.sleephealth: DEBUG
