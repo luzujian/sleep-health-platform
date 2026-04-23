@@ -35,10 +35,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         try {
             String jwt = parseJwt(request);
+            log.debug("JWT token from request: {}", jwt);
 
-            if (jwt != null && jwtUtils.isTokenExpired(jwt)) {
+            if (jwt != null) {
                 String username = jwtUtils.getUsernameFromToken(jwt);
+                log.debug("Username from token: {}", username);
+
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                log.debug("UserDetails loaded: {}", userDetails);
 
                 if (jwtUtils.validateToken(jwt, username)) {
                     UsernamePasswordAuthenticationToken authentication =
@@ -49,10 +53,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                             );
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                    log.debug("Authentication set in SecurityContext: {}", authentication);
                 }
             }
         } catch (Exception e) {
-            log.error("JWT认证失败: {}", e.getMessage());
+            log.error("JWT认证失败: {}", e.getMessage(), e);
         }
 
         filterChain.doFilter(request, response);

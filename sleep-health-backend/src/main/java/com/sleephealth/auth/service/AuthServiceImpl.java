@@ -7,7 +7,7 @@ import com.sleephealth.auth.dto.RegisterRequest;
 import com.sleephealth.common.exception.BusinessException;
 import com.sleephealth.common.Code;
 import com.sleephealth.common.utils.JwtUtils;
-import com.sleephealth.common.utils.PasswordEncoder;
+import com.sleephealth.common.utils.CustomPasswordEncoder;
 import com.sleephealth.user.entity.User;
 import com.sleephealth.user.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl implements AuthService {
 
     private final UserMapper userMapper;
-    private final PasswordEncoder passwordEncoder;
+    private final CustomPasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
 
     @Override

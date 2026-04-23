@@ -33,7 +33,7 @@ public class SessionController {
     @PutMapping("/{id}/end")
     public Result<Void> endSession(@PathVariable Long id) {
         sessionService.endSession(id);
-        return Result.success("会话已结束");
+        return Result.success();
     }
 
     @GetMapping("/user/{userId}")
