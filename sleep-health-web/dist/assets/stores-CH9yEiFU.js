@@ -1,0 +1,1 @@
+import{ft as e,z as t}from"./index-t-2lG2zG.js";t(`user`,()=>{let t=e([]),n=e(null);return{userList:t,currentUser:n,getUserList:async()=>{t.value=[]},getUserById:async e=>{n.value=null}}});var n=t(`global`,()=>{let t=e(!1),n=e(!1);return{loading:t,sidebarCollapsed:n,setLoading:e=>{t.value=e},toggleSidebar:()=>{n.value=!n.value}}});export{n as t};

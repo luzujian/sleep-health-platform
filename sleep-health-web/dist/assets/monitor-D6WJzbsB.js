@@ -1,0 +1,1 @@
+import{n as e}from"./index-t-2lG2zG.js";var t={getUsersSummary(){return e.get(`/api/monitor/users/summary`)}};export{t};
